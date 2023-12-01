@@ -2,7 +2,7 @@
 CREATE TABLE "Contacto" (
     "id" SERIAL NOT NULL,
     "nombre" TEXT NOT NULL,
-    "apellido" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "edad" INTEGER NOT NULL,
     "telefono" INTEGER NOT NULL,
     "relacion" TEXT NOT NULL,
@@ -18,7 +18,6 @@ CREATE TABLE "Usuario" (
     "apellido" TEXT NOT NULL,
     "edad" INTEGER NOT NULL,
     "telefono" INTEGER NOT NULL,
-    "carnet" INTEGER NOT NULL,
     "correo" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "rol" TEXT NOT NULL,
@@ -83,6 +82,21 @@ CREATE TABLE "Modificacion" (
 
     CONSTRAINT "Modificacion_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateTable
+CREATE TABLE "informacion" (
+    "id" SERIAL NOT NULL,
+    "titulo" TEXT NOT NULL,
+    "cuerpo" TEXT NOT NULL,
+    "url" TEXT,
+    "imagen" TEXT,
+    "estado" TEXT DEFAULT 'false',
+
+    CONSTRAINT "informacion_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Usuario_correo_key" ON "Usuario"("correo");
 
 -- AddForeignKey
 ALTER TABLE "Contacto" ADD CONSTRAINT "Contacto_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES "Usuario"("id") ON DELETE SET NULL ON UPDATE CASCADE;
