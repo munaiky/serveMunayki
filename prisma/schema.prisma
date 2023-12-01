@@ -3,14 +3,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model Contacto {
   id        Int      @id @default(autoincrement())
   nombre    String
-  apellido  String
+  email     String
   edad      Int
   telefono  Int
   relacion  String
@@ -24,8 +24,7 @@ model Usuario {
   apellido              String
   edad                  Int
   telefono              Int
-  carnet                Int
-  correo                String
+  correo                String                  @unique
   password              String
   rol                   String
   genero                String
@@ -80,4 +79,13 @@ model Modificacion {
   usuario      Usuario?    @relation(fields: [usuarioId], references: [id])
   multimedia   Multimedia? @relation(fields: [multimediaId], references: [id])
   multimediaId Int?
+}
+
+model informacion {
+  id     Int     @id @default(autoincrement())
+  titulo String
+  cuerpo String
+  url    String?
+  imagen String?
+  estado String? @default("false")
 }

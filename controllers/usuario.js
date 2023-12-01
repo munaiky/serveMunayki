@@ -14,20 +14,26 @@ app.get("/user", async (req, res) => {
 });
 
 app.post("/user", async (req, res) => {
-  try {
-    const newuser = await prisma.usuario.create({
+    const existingUser = await prisma.usuario.findUnique({
+      where: {
+        correo: req.body.correo,
+      },
+    });
+    if (existingUser) {
+      return res.message.json({
+        message: "El correo electrónico ya está en uso",
+      });
+    }
+    const newUsuario = await prisma.usuario.create({
       data: req.body,
     });
     res.json({
-      message: "sucessully create",
-      data: newuser,
+      message: "Usuario creado exitosamente",
+      data: newUsuario,
     });
-  } catch (error) {
-    res.status(500).json({
-      error: error.message,
-    });
-  }
+ 
 });
+
 app.put("/user/:id", async (req, res) => {
   const id = Number(req.params.id);
   try {
