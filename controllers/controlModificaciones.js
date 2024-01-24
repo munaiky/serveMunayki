@@ -62,4 +62,20 @@ app.post("/modificacion/:usuarioId/:multimediaId", async (req, res) => {
     res.status(500).json({ error: "Error al crear la modificación" });
   }
 });
+
+app.delete("/modificacion/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  const userUpdate = await prisma.modificacion.delete({
+    where: {
+      id,
+    },
+  });
+  res.json({
+    message: "successully delete",
+    data: userUpdate,
+  });
+});
+
+
+
 module.exports = app;

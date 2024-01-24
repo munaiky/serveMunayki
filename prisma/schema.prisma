@@ -89,3 +89,24 @@ model informacion {
   imagen String?
   estado String? @default("false")
 }
+
+model tag {
+  id       Int        @id @default(autoincrement())
+  name     String
+  response response[]
+  pattern  pattern[]
+}
+
+model response {
+  id          Int    @id @default(autoincrement())
+  name        String
+  tag_id      Int
+  tagResponse tag?   @relation(fields: [tag_id], references: [id])
+}
+
+model pattern {
+  id        Int    @id @default(autoincrement())
+  name      String
+  tag_id    Int
+  tagpatern tag?   @relation(fields: [tag_id], references: [id])
+}

@@ -1,0 +1,3 @@
+# DATABASE_URL="postgres://default:zx2AM5uvQGeF@ep-red-breeze-66713120.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+DATABASE_URL="postgresql://TANHEHANZ:KLt9gPIye1AG@ep-blue-art-40648817.us-east-1.aws.neon.tech/munayki?sslmode=require"
+# postgresql://TANHEHANZ:KLt9gPIye1AG@ep-blue-art-40648817.us-east-1.aws.neon.tech/munayki?sslmode=require
